@@ -15,6 +15,8 @@ jobs:
       GITHUB_REPO_OWNER: flighttrackr
       DOCKER_HUB_ORGANISATION: flighttrackr
       QEMU_PLATFORMS: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386
+      SoapySDR_Repository: https://github.com/pothosware/SoapySDR.git
+      SoapySDR_Commit: ab6260680c37a80ed4a23719bebc854248290c8b
       SoapySDR_RTLSDR_Repository: https://github.com/pothosware/SoapyRTLSDR.git
       SoapySDR_RTLSDR_Commit: 53ee8f4a19dd97011a569cfc2e6f7ad63f896100
     strategy:
@@ -70,6 +72,8 @@ jobs:
         with:
           context: ${{ matrix.DOCKER_IMAGE }}
           build-args: |
+            SoapySDR_Repository=${{ env.SoapySDR_Repository }}
+            SoapySDR_Commit=${{ env.SoapySDR_Commit }}
             SoapySDR_RTLSDR_Repository=${{ env.SoapySDR_RTLSDR_Repository }}
             SoapySDR_RTLSDR_Commit=${{ env.SoapySDR_RTLSDR_Commit }}
           cache-from: type=local,src=/tmp/.buildx-cache
