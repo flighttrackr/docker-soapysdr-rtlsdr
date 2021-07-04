@@ -1,17 +1,19 @@
-# Builder
-FROM alpine:3.14 AS builder
-
-ARG SoapySDR_Repository
-ARG SoapySDR_Commit
-
-ARG SoapySDR_RTLSDR_Repository
-ARG SoapySDR_RTLSDR_Commit
+# Builder Base
+FROM alpine:3.14 AS builder-base
 
 # Packages
 RUN apk add --no-cache build-base cmake git librtlsdr-dev
 
-# Workdir SoapySDR
-WORKDIR /usr/src/soapysdr
+# Workdir
+WORKDIR /usr/src/builder
+
+
+# Builder SoapySDR
+FROM builder-base AS builder-soapysdr
+
+# Arguments
+ARG SoapySDR_Repository
+ARG SoapySDR_Commit
 
 # Checkout SoapySDR
 RUN git clone ${SoapySDR_Repository} . && \
@@ -21,13 +23,20 @@ RUN git clone ${SoapySDR_Repository} . && \
 RUN mkdir build && \
     mkdir install && \
     cd build && \
-    cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install -DSOAPY_SDR_ROOT=../install && \
+    cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install && \
     make && \
     make install
 
 
-# Workdir SoapySDR-RTLSDR
-WORKDIR /usr/src/soapysdr-rtlsdr
+# Builder SoapySDR-RTLSDR
+FROM builder-base AS builder-soapysdr-rtlsdr
+
+# Arguments
+ARG SoapySDR_RTLSDR_Repository
+ARG SoapySDR_RTLSDR_Commit
+
+# Copy SoapySDR
+COPY --from=builder-soapysdr /usr/src/builder/install/ /usr/local/
 
 # Checkout SoapySDR-RTLSDR
 RUN git clone -b master ${SoapySDR_RTLSDR_Repository} . && \
@@ -48,6 +57,6 @@ FROM alpine:3.14 AS release
 # Packages
 RUN apk add --no-cache librtlsdr
 
-# Copy files
-COPY --from=builder /usr/src/soapysdr/install/ /usr/local/
-COPY --from=builder /usr/src/soapysdr-rtlsdr/install/ /usr/local/
+# Copy SoapySDR and SoapySDR-RTLSDR
+COPY --from=builder-soapysdr /usr/src/builder/install/ /usr/local/
+COPY --from=builder-soapysdr-rtlsdr /usr/src/builder/install/ /usr/local/
