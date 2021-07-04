@@ -10,6 +10,7 @@ jobs:
     timeout-minutes: 180
     env:
       DOCKER_HUB_ORGANISATION: flighttrackr
+      DOCKER_HUB_REPOSITORY: soapysdr-rtlsdr
       QEMU_PLATFORMS: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386
       SoapySDR_Repository: https://github.com/pothosware/SoapySDR.git
       SoapySDR_Commit: ab6260680c37a80ed4a23719bebc854248290c8b
@@ -38,7 +39,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3.3.0
         with:
-          images: ${{ env.DOCKER_HUB_ORGANISATION }}/soapy-rtlsdr
+          images: ${{ env.DOCKER_HUB_ORGANISATION }}/${{ env.DOCKER_HUB_REPOSITORY }}
           flavor: latest=false
           tags: type=ref,prefix=${{ matrix.DOCKER_IMAGE }}-,event=pr
 
