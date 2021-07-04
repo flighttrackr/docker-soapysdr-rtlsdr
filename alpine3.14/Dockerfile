@@ -21,7 +21,7 @@ RUN git clone ${SoapySDR_Repository} . && \
 RUN mkdir build && \
     mkdir install && \
     cd build && \
-    cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install && \
+    cmake ../ -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../install -DSOAPY_SDR_ROOT=../install && \
     make && \
     make install
 
