@@ -32,4 +32,4 @@ RUN apk add --no-cache librtlsdr && \
     apk add --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/testing/ soapy-sdr
 
 # Copy files
-COPY --from=builder /app/install/ /usr/local/
+COPY --from=builder /usr/src/soapy-rtlsdr/install/ /usr/local/
