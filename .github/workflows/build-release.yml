@@ -51,7 +51,7 @@ jobs:
 
       - name: Set up Docker metadata
         id: meta
-        uses: docker/metadata-action@v3.3.0
+        uses: docker/metadata-action@v3.4.0
         with:
           images: ${{ env.DOCKER_HUB_ORGANISATION }}/${{ env.DOCKER_HUB_REPOSITORY }}
           flavor: latest=${{ matrix.IS_LATEST == 'true' }}
