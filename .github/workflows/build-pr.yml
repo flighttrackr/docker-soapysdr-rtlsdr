@@ -42,7 +42,7 @@ jobs:
           tags: type=ref,prefix=${{ matrix.DOCKER_IMAGE }}-,event=pr
 
       - name: Build and push
-        uses: docker/build-push-action@v3.1.0
+        uses: docker/build-push-action@v3.1.1
         with:
           context: ${{ matrix.DOCKER_IMAGE }}
           build-args: |
