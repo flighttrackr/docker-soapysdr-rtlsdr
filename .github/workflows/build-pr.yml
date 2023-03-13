@@ -31,7 +31,7 @@ jobs:
           platforms: ${{ env.QEMU_PLATFORMS }}
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2.4.1
+        uses: docker/setup-buildx-action@v2.5.0
 
       - name: Set up Docker metadata
         id: meta
