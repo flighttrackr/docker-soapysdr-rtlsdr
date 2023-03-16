@@ -1,0 +1,20 @@
+name: Build, Push, Release
+
+on:
+  push:
+    branches:
+      - 'main'
+    tags:
+      - 'v*'
+
+jobs:
+  call-workflow:
+    name: Centralized workflow
+    uses: flighttrackr/workflows/.github/workflows/release-with-upstream.yml@main
+    with:
+      hub_repo: flighttrackr
+      hub_image: soapysdr-rtlsdr
+      image_authors: Dennis Neufeld <git@dneufeld.net>
+      image_title: soapysdr-rtlsdr
+      image_description: Dockerized SoapySDR RTL-SDR
+      image_licenses: MIT

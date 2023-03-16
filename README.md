@@ -1,16 +1,24 @@
-# Docker SoapySDR RTL-SDR
+# SoapySDR RTL-SDR
 
-[![Build release images](https://github.com/flighttrackr/docker-soapysdr-rtlsdr/actions/workflows/build-release.yml/badge.svg)](https://github.com/flighttrackr/docker-soapysdr-rtlsdr/actions/workflows/build-release.yml)
-[![Build develop images](https://github.com/flighttrackr/docker-soapysdr-rtlsdr/actions/workflows/build-develop.yml/badge.svg)](https://github.com/flighttrackr/docker-soapysdr-rtlsdr/actions/workflows/build-develop.yml)
+[![Release](https://github.com/flighttrackr/docker-soapysdr-rtlsdr/actions/workflows/release.yml/badge.svg)](https://github.com/flighttrackr/docker-soapysdr-rtlsdr/actions/workflows/release.yml)
 
-Docker Base Image for SoapySDR RTL-SDR.
+This project makes [Charles]' [SoapySDR module for RTL-SDR] software available as a *base* Docker image.
 
-## Changelog
-See [CHANGELOG.md](CHANGELOG.md).
+Due to the API limitations of Docker Hub, we use GitHub as container imaage registry.
 
-## Available tags
-See on [Docker Hub](https://hub.docker.com/r/flighttrackr/soapysdr-rtlsdr/tags).
+## Other projects
 
-## Used software
-- [SoapySDR](https://github.com/pothosware/SoapySDR)
-- [SoapySDR RTL-SDR](https://github.com/pothosware/SoapyRTLSDR)
+We have other Flighttracking projects, check our [GitHub profile].
+
+## Supported architectures
+
+- linux/amd64
+- linux/arm/v6
+- linux/arm/v7
+- linux/arm64
+- linux/386
+
+
+[Charles]: https://github.com/pothosware
+[SoapySDR module for RTL-SDR]: https://github.com/pothosware/SoapyRTLSDR
+[GitHub profile]: https://github.com/flighttrackr
