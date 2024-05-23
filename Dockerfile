@@ -1,5 +1,5 @@
 # Builder
-FROM alpine:3.19.1 AS builder
+FROM alpine:3.20.0 AS builder
 
 ARG UPSTREAM_REMOTE
 ARG UPSTREAM_BRANCH
@@ -24,7 +24,7 @@ RUN mkdir build install && \
 
 
 # Release
-FROM alpine:3.19.1 AS release
+FROM alpine:3.20.0 AS release
 
 # Packages
 RUN apk add --no-cache librtlsdr && \
